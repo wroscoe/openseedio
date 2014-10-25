@@ -20,11 +20,26 @@ angular.module('openapp', ['ionic'])
 
 
 
-.controller('OpenCtrl', function($scope) {
+.controller('OpenCtrl', function($scope, $ionicModal) {
   $scope.tasks = [
     { title: 'Collect coins' },
     { title: 'Eat mushrooms' },
     { title: 'Get high enough to grab the flag' },
     { title: 'Find the Princess' }
   ];
+
+  $ionicModal.fromTemplateUrl('templates/scanner-modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.scannerModal = modal;
+  });
+
+  $scope.showScanner = function showScanner() {
+    $scope.scannerModal.show();
+  };
+
+  $scope.scan = function scan() {
+    // Filler function, should not be necessary
+    $scope.scannerModal.hide();
+  };
 });
