@@ -16,6 +16,20 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="http://pubnub.github.io/angular-js/scripts/pubnub-angular.js"></script>
+
+    <!-- Instantiate PubNub -->
+    <script type="text/javascript">
+      var PUBNUB_demo = PUBNUB.init({
+      publish_key: 'demo',
+      subscribe_key: 'demo'
+      });
+    </script>
+
+
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
@@ -40,9 +54,9 @@
     -->
 
     <ion-list>
-      <ion-item>
+      <ion-item ng-click="scanBLE()">
         Scan for BLE
-      </ion-item>
+      </ion-item >
       <ion-item>
         Advertize BLE
       </ion-item>
@@ -53,6 +67,12 @@
         Scan CODE
       </ion-item>
       <ion-item>{{lastCode}}</ion-item>
+    </ion-list>
+
+    <ion-list >
+      <ion-item ng-click="sendPubNub()">
+        Send PUBNUB message.
+      </ion-item>
     </ion-list>
 
 
