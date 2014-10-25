@@ -3,9 +3,9 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('openapp', ['ionic', 'ngCordova'])
+angular.module('openapp', ['ionic', 'pubnub.angular.service'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, PubNub) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,11 +20,19 @@ angular.module('openapp', ['ionic', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    PubNub.init({
+      publish_key:'demo',
+      subscribe_key:'demo',
+      uuid:'an_optional_user_uuid'
+    })
+
   });
 })
 
 
-.controller('OpenCtrl', function($scope) {
+.controller('OpenCtrl', function($scope, PubNub) {
+
   $scope.tasks = [
     { title: 'Collect coins' },
     { title: 'Eat mushrooms' },
@@ -32,6 +40,8 @@ angular.module('openapp', ['ionic', 'ngCordova'])
     { title: 'Find the Princess' }
   ];
 
+
+/*
   $scope.scanBLE = function() {
     console.log('scanBLE');
     console.log(navigator);
@@ -48,15 +58,18 @@ angular.module('openapp', ['ionic', 'ngCordova'])
         console.log('scan successful');
         console.log(status);
       },
-
-
-
       err, params);}
-
     , err, params);
-
-
-
     alert("scanBLUE");
-  }
+  };
+  */
+
+
+
+  $scope.sendPubNub = function() {
+    PubNub.ngPublish({
+      channel: "tessel-locker",
+      message: "hello"
+    });
+  };
 });
