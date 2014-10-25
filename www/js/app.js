@@ -34,17 +34,10 @@ angular.module('openapp', ['ionic', 'pubnub.angular.service'])
 .controller('OpenCtrl', function($scope, PubNub) {
 
 
-/*
-  $ionicModal.fromTemplateUrl('templates/scanner-modal.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.scannerModal = modal;
-  });
-
-*/
-
   $scope.showScanner = function showScanner() {
-    // $scope.scannerModal.show();
+    // $scope.scannerModal.show
+
+    console.log(cordova);
 
     cordova.plugins.barcodeScanner.scan(
       function (result) {
@@ -57,6 +50,7 @@ angular.module('openapp', ['ionic', 'pubnub.angular.service'])
       }
     );
   };
+
 
   $scope.setCode = function setCode(newCode) {
     $scope.lastCode = newCode;
