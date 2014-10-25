@@ -13,7 +13,14 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
+
+  <cdv:plugin name="com.randdusing.bluetoothle" />
+
+  <feature name="BluetoothLePlugin"  value="com.randdusing.bluetoothle" />
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+
+
 </widget>
