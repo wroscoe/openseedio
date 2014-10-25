@@ -35,7 +35,22 @@ angular.module('openapp', ['ionic'])
   });
 
   $scope.showScanner = function showScanner() {
-    $scope.scannerModal.show();
+    // $scope.scannerModal.show();
+
+    cordova.plugins.barcodeScanner.scan(
+      function (result) {
+        $scope.$apply(function () {
+          $scope.setCode(result.text.replace(/.*\//, ''));
+        });
+      },
+      function (error) {
+        alert("Scanning failed: " + error);
+      }
+    );
+  };
+
+  $scope.setCode = function setCode(newCode) {
+    $scope.lastCode = newCode;
   };
 
   $scope.scan = function scan() {
