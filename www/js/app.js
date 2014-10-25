@@ -25,7 +25,7 @@ angular.module('openapp', ['ionic', 'pubnub.angular.service'])
       publish_key:'demo',
       subscribe_key:'demo',
       uuid:'an_optional_user_uuid'
-    })
+    });
 
   });
 })
@@ -60,11 +60,17 @@ angular.module('openapp', ['ionic', 'pubnub.angular.service'])
 
   $scope.setCode = function setCode(newCode) {
     $scope.lastCode = newCode;
+
+    PubNub.ngPublish({
+      channel: "tessel-locker",
+      message: newCode
+    });
   };
 
   $scope.scan = function scan() {
     // Filler function, should not be necessary
     $scope.scannerModal.hide();
+  };
 
 /*
   $scope.scanBLE = function() {
