@@ -20,7 +20,7 @@ angular.module('openapp', ['ionic'])
 
 
 
-.controller('TodoCtrl', function($scope) {
+.controller('OpenCtrl', function($scope) {
   $scope.tasks = [
     { title: 'Collect coins' },
     { title: 'Eat mushrooms' },
