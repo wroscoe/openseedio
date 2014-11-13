@@ -55,10 +55,26 @@ angular.module('openapp', ['ionic', 'pubnub.angular.service'])
   $scope.setCode = function setCode(newCode) {
     $scope.lastCode = newCode;
 
-    PubNub.ngPublish({
-      channel: "tessel-locker",
-      message: newCode
-    });
+
+    if (newCode == 'd301df8e9474b03a9995c993d546d705') {
+      PubNub.ngPublish({
+        channel: "tessel-locker",
+        message: {'open':'right'}
+      });
+    } 
+    else if (newCode == 'd401c26295f459d63178a7e80c16fd15') {
+      PubNub.ngPublish({
+        channel: "tessel-locker",
+        message: {'open': 'left'}
+      });
+    }
+    else {
+      console.log('code did not match... ');
+        PubNub.ngPublish({
+        channel: "tessel-locker",
+        message: {'open': 'none'}
+      });
+    }
   };
 
   $scope.scan = function scan() {
